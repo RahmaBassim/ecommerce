@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:e_commerce/shared/resources/routes_manager.dart';
 import 'package:e_commerce/shared/resources/theme.dart';
 import 'package:e_commerce/shared/static/bloc_observer.dart';
 import 'package:e_commerce/shared/static/navigation_service.dart';
+import 'package:e_commerce/shared/static/routes.dart';
 import 'package:e_commerce/shared/static/service_locator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -36,20 +36,18 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child){
-        return MultiBlocProvider(
-          providers:const [],
-          child: MaterialApp(
-            locale: context.locale,
-            supportedLocales: context.supportedLocales,
-            localizationsDelegates: context.localizationDelegates,
-            theme: MyTheme.lightTheme,
-            debugShowCheckedModeBanner: false, //RoutesManager
-            //onGenerateInitialRoutes:RoutesManager.onGenerateRoute,
-            navigatorKey: sl<NavigationService>().navigatorKey,
-            
-          )
+        return MaterialApp(
+          locale: context.locale,
+          supportedLocales: context.supportedLocales,
+          localizationsDelegates: context.localizationDelegates,
+          theme: MyTheme.lightTheme,
+          debugShowCheckedModeBanner: false,
+          navigatorKey: sl<NavigationService>().navigatorKey,
+          initialRoute: Routes.onBoarding,
+          onGenerateRoute: RoutesManager.onGenerateRoute,
         );
       },
     );
   }
 }
+

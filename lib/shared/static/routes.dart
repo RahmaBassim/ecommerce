@@ -1,5 +1,5 @@
 class Routes{
-  static const login= "/login";
-  static const onBoarding= "/onBoarding";
+  static const String login= "/login";
+  static const String onBoarding= "/onBoarding";
 
 }

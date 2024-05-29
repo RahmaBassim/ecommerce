@@ -9,7 +9,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class DioHelper {
   Dio init(){
     final dio = Dio(BaseOptions(
-      baseUrl: Constants.baseUrl,
+      //baseUrl: Constants.baseUrl,
       receiveDataWhenStatusError: true,
       followRedirects: false,
       receiveTimeout: const Duration(seconds: 1*30),
