@@ -1,3 +1,5 @@
+import 'dart:async';
+
 abstract class LocalDatasource{
   Future<bool> setData({
     required String key,
@@ -6,6 +8,7 @@ abstract class LocalDatasource{
 
   String getData(String key);
   String getToken();
+  Future<bool> disableOnboarding();
   bool getOnboarding();
   Future removeToken();
 }

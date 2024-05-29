@@ -1,6 +1,7 @@
 
 
 import 'package:e_commerce/data/local/local_datasource.dart';
+import 'package:e_commerce/shared/static/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../shared/static/service_locator.dart';
@@ -38,24 +39,28 @@ class LocalDatasourceImplementation extends LocalDatasource{
   String getData(String key){
     return sl<SharedPreferences>().getString(key) ?? "";
   }
-
-  @override
-  bool getOnboarding() {
-    // TODO: implement getOnboarding
-    throw UnimplementedError();
-  }
+  /*@override
+  Future<bool> setLogin(bool isGuest) async {
+    return await sl<SharedPreferences>().setBool(Constants.login, isGuest);
+  }*/
 
   @override
   String getToken() {
-    // TODO: implement getToken
-    throw UnimplementedError();
+    return prefsHelper.getString(Constants.token)??"";
   }
 
   @override
-  Future removeToken() {
-    // TODO: implement removeToken
-    throw UnimplementedError();
+  Future<bool> disableOnboarding()async{
+    return await prefsHelper.setBool(Constants.onboarding,true) ;
+  }
+  @override
+  bool getOnboarding(){
+    return prefsHelper.getBool(Constants.onboarding) ?? false;
   }
 
+  @override
+  removeToken() async {
+    await prefsHelper.remove(Constants.token);
+  }
 
 }
