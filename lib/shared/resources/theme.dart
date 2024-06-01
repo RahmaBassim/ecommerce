@@ -20,7 +20,17 @@ class MyTheme{
         fontSize: 18,
         fontWeight: FontWeight.w600,
         color: ColorsManager.pink
-      )
+      ),
+      bodyMedium: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.white
+      ),
+      bodyLarge: GoogleFonts.montserrat(
+          fontSize: 34,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.white
+      ),
     )
   );
   static ThemeData darkTheme = ThemeData();

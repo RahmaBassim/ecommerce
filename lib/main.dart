@@ -4,6 +4,7 @@ import 'package:e_commerce/shared/static/bloc_observer.dart';
 import 'package:e_commerce/shared/static/navigation_service.dart';
 import 'package:e_commerce/shared/static/routes.dart';
 import 'package:e_commerce/shared/static/service_locator.dart';
+import 'package:e_commerce/view/nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,15 +37,20 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child){
-        return MaterialApp(
-          locale: context.locale,
-          supportedLocales: context.supportedLocales,
-          localizationsDelegates: context.localizationDelegates,
-          theme: MyTheme.lightTheme,
-          debugShowCheckedModeBanner: false,
-          navigatorKey: sl<NavigationService>().navigatorKey,
-          initialRoute: Routes.onBoarding,
-          onGenerateRoute: RoutesManager.onGenerateRoute,
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context)=> NavBarCubit()),
+          ],
+          child: MaterialApp(
+            locale: context.locale,
+            supportedLocales: context.supportedLocales,
+            localizationsDelegates: context.localizationDelegates,
+            theme: MyTheme.lightTheme,
+            debugShowCheckedModeBanner: false,
+            navigatorKey: sl<NavigationService>().navigatorKey,
+            initialRoute: Routes.onBoarding,
+            onGenerateRoute: RoutesManager.onGenerateRoute,
+          ),
         );
       },
     );

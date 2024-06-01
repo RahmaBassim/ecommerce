@@ -45,7 +45,6 @@ class CustomTextFormField extends StatefulWidget {
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
-
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
@@ -155,6 +154,84 @@ class CustomValidation {
     // } else {
     //   return null;
     // }
+  }
+}
+
+class PasswordField extends StatefulWidget {
+  final TextEditingController controller;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final String? label;
+  final String? hintText;
+   const PasswordField({
+    required this.controller,
+    required this.hintText,
+    this.label,
+    this.onChanged,
+    this.validator,
+    super.key});
+
+  @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+class _PasswordFieldState extends State<PasswordField> {
+  late bool passwordVis;
+  @override
+  void initState(){
+    passwordVis = true;
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return CustomTextFormField(
+      validate: widget.validator ?? CustomValidation.validatePassword,
+      keyboardType: TextInputType.visiblePassword,
+      textEditingController: widget.controller,
+      hintText: StringsManager.enterPassword.tr(),
+      suffixPressed: (){
+        setState(() {
+          passwordVis = !passwordVis;
+        });
+      },
+      prefix: Icons.lock,
+      suffix: passwordVis ? Icons.remove_red_eye_outlined : Icons.remove_red_eye,
+      obscurePassword: passwordVis,
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final void Function()? onTap;
+  final String title;
+  const CustomButton({
+    required this.title,
+    required this.onTap,
+    super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap:onTap,
+      child: Container(
+        width: 317.w,
+        height: 55.h,
+        decoration: BoxDecoration(
+          color: ColorsManager.pink,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
+      ),
+    );
   }
 }
 

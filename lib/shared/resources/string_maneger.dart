@@ -14,4 +14,23 @@ class StringsManager{
   static const String enterValidPassword ='enterValidPassword';
   static const String validMail ='validMail';
   static const String enterPassword ='enterPassword';
+  static const String confirmPassword ='confirmPassword';
+  static const String validateConfirmPass ='validateConfirmPass';
+  static const String unmatchedPass ='unmatchedPass';
+  static const String forgetPassword ='forgetPassword';
+  static const String login ='login';
+  static const String signUp ='signUp';
+  static const String createAccount ='createAccount';
+  static const String haveAccount ='haveAccount';
+  static const String mailSent ='mailSent';
+  static const String submit ='submit';
+  static const String customHomeTitle1 ='customHomeTitle1';
+  static const String customHomeTitle2 ='customHomeTitle2';
+  static const String getStart ='getStart';
+  static const String home ='home';
+  static const String favorite ='favorite';
+  static const String cart ='cart';
+  static const String search ='search';
+  static const String setting ='setting';
+  static const String homeScreen ='homeScreen';
 }

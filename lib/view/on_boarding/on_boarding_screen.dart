@@ -60,21 +60,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 physics: const BouncingScrollPhysics(),
                 controller: _controller,
                 onPageChanged: (int index){
+                  if(index == pages.length -1){
+                    setState(() {
+                      isLast = true;
+                      currentIndex = index;
+                    });
+                  }else {
+                    setState(() {
+                      isLast =false;
+                      currentIndex = index;
+                    });
+                  }
+                  /*  (int index){
                 setState(() {
                   currentIndex = index;
-                });
+                });*/
                 },
-                    /*(int index){
-                if (index == pages.length -1){
-                  setState(() {
-                    isLast = true;
-                  });
-                }else {
-                  setState(() {
-                    isLast = false;
-                  });
-                }
-                },*/
                 itemBuilder: (context, index) => builderItem(pages[index])))
           ],
         ),
@@ -119,22 +120,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     style: Theme.of(context).textTheme.labelSmall,
                   )
               ): const SizedBox(),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    pages.length,
-                        (index) => buildDot(index, context),
-                  ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  pages.length,
+                      (index) => buildDot(index, context),
                 ),
               ),
               TextButton(
                   onPressed: (){
-                    if(isLast) {
+                    if(isLast == true) {
+                      //Navigator.pushNamed(context, Routes.login);
                       Navigator.pushNamed(context, Routes.login);
+
                     }else {
                       _controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.fastLinearToSlowEaseIn);
                     }
                   },
