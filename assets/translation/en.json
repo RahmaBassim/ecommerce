@@ -4,5 +4,14 @@
   "onBoarding2": "Make Payment",
   "onBoardingDes2": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
   "onBoarding3": "Get Your Order",
-  "onBoardingDes3": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."
+  "onBoardingDes3": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+  "skip": "Skip",
+  "next": "Next",
+  "headerTitle": "Welcome Back!",
+  "requiredData": "Required",
+  "passwordValidate": "It must be more than 6 characters",
+  "enterMail": "Enter Mail",
+  "enterPassword" : "Enter Password",
+  "enterValidPassword": "Enter Valid Password",
+  "validMail": "Enter Valid Mail"
 }

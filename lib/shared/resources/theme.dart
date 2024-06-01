@@ -15,6 +15,11 @@ class MyTheme{
         fontSize: 14,
         fontWeight: FontWeight.w600,
         color: ColorsManager.grey
+      ),
+      labelSmall: GoogleFonts.montserrat(
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: ColorsManager.pink
       )
     )
   );

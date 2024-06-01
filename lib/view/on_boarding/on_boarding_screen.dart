@@ -3,6 +3,8 @@ import 'package:e_commerce/shared/resources/string_maneger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../shared/resources/colors_manager.dart';
+import '../../shared/static/routes.dart';
 
 
 class OnBoardingScreen extends StatefulWidget {
@@ -33,9 +35,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       skip: false,
     )
   ];
-  final controller = PageController();
-  bool isList = false;
+  late PageController _controller ;
+  bool isLast = false;
+  int currentIndex = 0;
 
+  @override
+  void initState(){
+    super.initState();
+    _controller = PageController(initialPage: 0);
+  }
+  @override
+  void dispose(){
+    _controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +58,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Expanded(child: PageView.builder(
               itemCount: pages.length,
                 physics: const BouncingScrollPhysics(),
-                controller: controller,
+                controller: _controller,
                 onPageChanged: (int index){
+                setState(() {
+                  currentIndex = index;
+                });
+                },
+                    /*(int index){
                 if (index == pages.length -1){
                   setState(() {
-                    isList = true;
+                    isLast = true;
                   });
                 }else {
                   setState(() {
-                    isList = false;
+                    isLast = false;
                   });
                 }
-                },
+                },*/
                 itemBuilder: (context, index) => builderItem(pages[index])))
           ],
         ),
@@ -64,27 +82,84 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget builderItem (OnBoardingDetails screen) => SingleChildScrollView(
-    child: Column(
-      children: [
-        SizedBox(
-          width: 300.w,
-          height: 300.h,
-          child: Image.asset(screen.image),
-        ),
-        Text(
-          screen.title,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.labelLarge,
-        ),
-        Text(
+  Widget builderItem (OnBoardingDetails screen) => Column(
+    children: [
+      SizedBox(height: 100.h,),
+      SizedBox(
+        width: 450.w,
+        height: 350.h,
+        child: Image.asset(screen.image),
+      ),
+      SizedBox(height: 50.h,),
+      Text(
+        screen.title,
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Text(
           screen.description,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelMedium,
         ),
-      ],
-    ),
+      ),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              screen.skip? TextButton(
+                  onPressed: (){
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.login, (route)=>false);
+                  },
+                  child: Text(
+                    StringsManager.skip.tr(),
+                    style: Theme.of(context).textTheme.labelSmall,
+                  )
+              ): const SizedBox(),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    pages.length,
+                        (index) => buildDot(index, context),
+                  ),
+                ),
+              ),
+              TextButton(
+                  onPressed: (){
+                    if(isLast) {
+                      Navigator.pushNamed(context, Routes.login);
+                    }else {
+                      _controller.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.fastLinearToSlowEaseIn);
+                    }
+                  },
+                  child: Text(
+                    StringsManager.next.tr(),
+                    style: Theme.of(context).textTheme.labelMedium,
+                  )
+              )
+            ],
+          ),
+        ),
+      )
+    ],
   );
+  Container buildDot (int index ,BuildContext context){
+    return Container(
+      height: 10,
+      width: currentIndex == index ? 20 : 10,
+      margin:const EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: currentIndex == index ?ColorsManager.black:ColorsManager.grey,
+      ),
+    );
+  }
 }
 
 
@@ -101,3 +176,4 @@ class OnBoardingDetails{
     required this.skip
   });
 }
+
