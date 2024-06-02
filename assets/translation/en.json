@@ -32,5 +32,13 @@
   "cart" : "Cart",
   "search": "Search",
   "setting": "Setting",
-  "homeScreen": "Home Screen"
+  "homeScreen": "Home Screen",
+  "features": "Features",
+  "sort": "Sort",
+  "filter": "Filter",
+  "beauty": "Beauty",
+  "fashion": "Fashion",
+  "kids": "Kids",
+  "men": "Men",
+  "women": "Women"
 }

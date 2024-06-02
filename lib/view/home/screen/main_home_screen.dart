@@ -1,4 +1,9 @@
+import 'package:e_commerce/shared/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/features.dart';
+import '../widgets/header.dart';
 
 
 class MainHomeScreen extends StatelessWidget {
@@ -7,11 +12,18 @@ class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: 100,
-        height: 100,
-        color: Colors.deepOrange,
-      ),
+      backgroundColor: ColorsManager.light,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(height: 30.h,),
+            const HomeHeaderWidget(),
+            SizedBox(height: 30.h,),
+            const FeaturesWidget(),
+          ],
+        ),
+      )
     );
   }
 }

@@ -33,4 +33,12 @@ class StringsManager{
   static const String search ='search';
   static const String setting ='setting';
   static const String homeScreen ='homeScreen';
+  static const String features ='features';
+  static const String sort ='sort';
+  static const String filter ='filter';
+  static const String beauty ='beauty';
+  static const String fashion ='fashion';
+  static const String kids ='kids';
+  static const String men ='men';
+  static const String women ='women';
 }

@@ -11,6 +11,16 @@ class MyTheme{
         fontWeight: FontWeight.w800,
         color: ColorsManager.black
       ),
+      displayMedium:  GoogleFonts.montserrat(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.black
+      ),
+      displaySmall:  GoogleFonts.montserrat(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: ColorsManager.black
+      ),
       labelMedium: GoogleFonts.montserrat(
         fontSize: 14,
         fontWeight: FontWeight.w600,

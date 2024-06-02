@@ -3,6 +3,7 @@ import 'package:e_commerce/shared/resources/string_maneger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:string_validator/string_validator.dart';
 
 
@@ -234,4 +235,75 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+
+class HeaderTitle extends StatelessWidget {
+  final String title;
+  const HeaderTitle({required this.title,super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: Theme.of(context).textTheme.displayMedium,
+    );
+  }
+}
+
+class SortContainer extends StatelessWidget {
+  final String text;
+  final String icon;
+  const SortContainer({required this.text,required this.icon,super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 55.w,
+        height: 30.h,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: ColorsManager.white
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              text,
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            SvgPicture.asset(icon)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CategoryContainer extends StatelessWidget {
+  final String image;
+  final String categoryName;
+  const CategoryContainer({required this.image,required this.categoryName,super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CircleAvatar(
+          child: Image.asset(
+              image,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Text(
+          categoryName,
+          style: Theme.of(context).textTheme.displayMedium,
+        )
+      ],
+    );
+  }
+}
+
+
+
 
