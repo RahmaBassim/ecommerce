@@ -33,7 +33,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 500.w,
-      height: 200.h,
+      height: 100.h,
       child: ListView.builder(
           itemCount: 5,
           scrollDirection: Axis.horizontal,
