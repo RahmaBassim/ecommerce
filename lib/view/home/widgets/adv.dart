@@ -31,7 +31,7 @@ class _AdvWidgetState extends State<AdvWidget> {
               return buildImage(urlImage, index);
             },
             options: CarouselOptions(
-                height: 200.h,
+              height: 200.h,
               autoPlay: true,
               autoPlayAnimationDuration:const Duration(seconds: 2),
               onPageChanged: (index, state)=>
