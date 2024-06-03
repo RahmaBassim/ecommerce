@@ -40,5 +40,7 @@
   "fashion": "Fashion",
   "kids": "Kids",
   "men": "Men",
-  "women": "Women"
+  "women": "Women",
+  "products": "All Products",
+  "noInternetConnection": "No Internet Connection"
 }

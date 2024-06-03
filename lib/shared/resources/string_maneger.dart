@@ -41,4 +41,6 @@ class StringsManager{
   static const String kids ='kids';
   static const String men ='men';
   static const String women ='women';
+  static const String products ='products';
+  static const String noInternetConnection ='noInternetConnection';
 }

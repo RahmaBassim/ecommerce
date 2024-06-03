@@ -2,6 +2,7 @@
 
 import 'package:e_commerce/shared/static/routes.dart';
 import 'package:e_commerce/view/on_boarding/on_boarding_screen.dart';
+import 'package:e_commerce/view/products/screen/products_screen.dart';
 import 'package:e_commerce/view/user_authontication/forget_password/screen/forget_password_screen.dart';
 import 'package:e_commerce/view/user_authontication/signup/screen/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,6 +38,9 @@ class RoutesManager{
       case Routes.navBar:
         return CupertinoPageRoute(
             builder:(_)=> const NavBar(), settings: routeSettings );
+      case Routes.products:
+        return CupertinoPageRoute(
+            builder:(_)=> const ProductsScreen(), settings: routeSettings );
     }
   }
 }

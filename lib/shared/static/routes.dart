@@ -6,5 +6,6 @@ class Routes{
   static const String signUp= "/signUp";
   static const String mainHome= "/mainHome";
   static const String navBar= "/navBar";
+  static const String products= "/products";
 
 }

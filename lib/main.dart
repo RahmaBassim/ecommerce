@@ -5,6 +5,7 @@ import 'package:e_commerce/shared/static/navigation_service.dart';
 import 'package:e_commerce/shared/static/routes.dart';
 import 'package:e_commerce/shared/static/service_locator.dart';
 import 'package:e_commerce/view/nav_bar/cubit/nav_bar_cubit.dart';
+import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context)=> NavBarCubit()),
+            BlocProvider(create: (_)=> sl<ProductsCubit>()),
           ],
           child: MaterialApp(
             locale: context.locale,

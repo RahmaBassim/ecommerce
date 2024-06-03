@@ -12,6 +12,7 @@ class AssetsManager{
   static const String men ='assets/images/men.png';
   static const String women ='assets/images/women.png';
   static const String adv ='assets/images/adv.png';
+  static const String summerAdv ='assets/images/summer.png';
 
 
   //////////////// ICONS ////////////////////

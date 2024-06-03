@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../shared/resources/assets_manager.dart';
 import '../../../shared/resources/string_maneger.dart';
 import '../../../shared/static/reusable_components.dart';
-import 'adv.dart';
 import 'categories.dart';
 
 
@@ -41,7 +40,6 @@ class FeaturesWidget extends StatelessWidget {
         ),
         SizedBox(height: 20.h,),
         const CategoryWidget(),
-        const AdvWidget(),
       ],
     );
   }
