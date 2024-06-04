@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.text,
                     textEditingController: mailController,
                     hintText: StringsManager.enterMail.tr(),
-                  prefix: Icons.mail,
+                  prefix: Icons.person,
                 ),
                 SizedBox(height: 50.h,),
                 PasswordField(

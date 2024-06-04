@@ -65,7 +65,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 icon: Icon(widget.suffix))
             : null,
         contentPadding: REdgeInsets.symmetric(
-          horizontal: 10
+          horizontal: 30
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
