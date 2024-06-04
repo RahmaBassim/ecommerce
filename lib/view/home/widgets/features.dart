@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../shared/resources/assets_manager.dart';
 import '../../../shared/resources/string_maneger.dart';
 import '../../../shared/static/reusable_components.dart';
-import 'categories.dart';
+import 'categories_widget.dart';
 
 
 class FeaturesWidget extends StatelessWidget {

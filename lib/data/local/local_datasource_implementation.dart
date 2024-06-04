@@ -64,5 +64,9 @@ class LocalDatasourceImplementation extends LocalDatasource{
   removeToken() async {
     await prefsHelper.remove(Constants.token);
   }
+  @override
+  String getTheme() {
+    return prefsHelper.getString("theme") ?? "";
+  }
 
 }

@@ -6,19 +6,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductCart extends StatelessWidget {
   final String image;
   final String productName;
-  final String productDescription;
+  //final String productDescription;
+  final String price;
 
   const ProductCart({
     required this.productName,
-    required this.productDescription,
+    //required this.productDescription,
     required this.image,
+    required this.price,
     super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 170.w,
-      height: 305.h,
+      height: 330.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: ColorsManager.white
@@ -33,8 +35,8 @@ class ProductCart extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                image: AssetImage(image),
-                fit: BoxFit.cover
+                image: NetworkImage(image),
+                fit: BoxFit.contain
               ),
             ),
           ),
@@ -43,16 +45,21 @@ class ProductCart extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             child: Text(
               productName,
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.displaySmall
             ),
           ),
-
           Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Text(
+              price,
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+         /* Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(
               productDescription,
               style: Theme.of(context).textTheme.displaySmall,
-            ),
+            ),*/
           ),
         ],
       ),

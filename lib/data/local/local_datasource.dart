@@ -11,4 +11,5 @@ abstract class LocalDatasource{
   Future<bool> disableOnboarding();
   bool getOnboarding();
   Future removeToken();
+  String getTheme();
 }

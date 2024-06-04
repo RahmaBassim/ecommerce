@@ -2,13 +2,11 @@ import 'package:e_commerce/shared/resources/assets_manager.dart';
 import 'package:e_commerce/shared/resources/colors_manager.dart';
 import 'package:e_commerce/view/home/screen/main_home_screen.dart';
 import 'package:e_commerce/view/nav_bar/cubit/nav_bar_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import '../../shared/resources/string_maneger.dart';
 import '../favorite/screen/favorite_screen.dart';
 import '../search/screen/search_screen.dart';
@@ -17,9 +15,14 @@ import '../shopping_cart/screen/shopping_cart_screen.dart';
 import 'cubit/nav_bar_state.dart';
 
 
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,32 +35,32 @@ class NavBar extends StatelessWidget {
                 selectedItemColor: ColorsManager.pink,
                 unselectedItemColor: ColorsManager.grey,
                 items: [
-                  bottomNavigationBarItem(
+                  _bottomNavigationBarItem(
                       icon: AssetsManager.homeIcon,
-                      label: StringsManager.home.tr,
+                      label: StringsManager.home.tr(),
                       currentIndex: state.index,
                       iconIndex: 0
                   ),
-                  bottomNavigationBarItem(
+                  _bottomNavigationBarItem(
                       icon: AssetsManager.favoriteIcon,
-                      label: StringsManager.favorite.tr,
+                      label: StringsManager.favorite.tr(),
                       currentIndex: state.index,
                       iconIndex: 1
                   ),
-                  bottomNavigationBarItem(
+                  _bottomNavigationBarItem(
                       icon: AssetsManager.cartIcon,
-                      label: StringsManager.cart.tr,
+                      label: StringsManager.cart.tr(),
                       currentIndex: state.index,
                       iconIndex: 2
                   ),
-                  bottomNavigationBarItem(
+                  _bottomNavigationBarItem(
                       icon: AssetsManager.searchIcon,
-                      label: StringsManager.search.tr,
+                      label: StringsManager.search.tr(),
                       currentIndex: state.index,
                       iconIndex: 3
-                  ), bottomNavigationBarItem(
+                  ), _bottomNavigationBarItem(
                       icon: AssetsManager.settingIcon,
-                      label: StringsManager.setting.tr,
+                      label: StringsManager.setting.tr(),
                       currentIndex: state.index,
                       iconIndex: 4
                   ),
@@ -85,7 +88,7 @@ class NavBar extends StatelessWidget {
             }
           }return  Center (
             child: Text(
-              StringsManager.homeScreen.tr,
+              StringsManager.homeScreen.tr(),
             ),
           );
         },
@@ -95,7 +98,7 @@ class NavBar extends StatelessWidget {
 }
 
 
-BottomNavigationBarItem bottomNavigationBarItem({
+BottomNavigationBarItem _bottomNavigationBarItem({
   required String icon,
   required String label,
   required int currentIndex,

@@ -7,6 +7,7 @@ import '../../../shared/resources/string_maneger.dart';
 import '../../../shared/static/reusable_components.dart';
 import '../../../shared/static/routes.dart';
 import '../widgets/adv.dart';
+import '../widgets/categories_widget.dart';
 import '../widgets/features.dart';
 import '../widgets/header.dart';
 import '../widgets/list_of_products.dart';
@@ -26,8 +27,9 @@ class MainHomeScreen extends StatelessWidget {
             SizedBox(height: 30.h,),
             const HomeHeaderWidget(),
             SizedBox(height: 30.h,),
-            const FeaturesWidget(),
             const AdvWidget(),
+            SizedBox(height: 30.h,),
+            const CategoryWidget(),
             SizedBox(height: 20.h,),
             Padding(
               padding: const EdgeInsets.all(8.0),

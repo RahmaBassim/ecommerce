@@ -42,5 +42,8 @@
   "men": "Men",
   "women": "Women",
   "products": "All Products",
-  "noInternetConnection": "No Internet Connection"
+  "noInternetConnection": "No Internet Connection",
+  "changeLanguage": "Change Language",
+  "ar": "Arabic",
+  "en": "English"
 }

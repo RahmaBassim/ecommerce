@@ -1,11 +1,11 @@
-class CategoryResponseModel {
+class CategoryProductsResponseModel {
   List<GetCategoryProductsModel>? products;
   int? total;
   int? skip;
   int? limit;
-  CategoryResponseModel({this.products, this.total, this.skip, this.limit});
-  factory CategoryResponseModel.fromJson({required Map<String, dynamic> json}) {
-    return CategoryResponseModel(
+  CategoryProductsResponseModel({this.products, this.total, this.skip, this.limit});
+  factory CategoryProductsResponseModel.fromJson({required Map<String, dynamic> json}) {
+    return CategoryProductsResponseModel(
         products: (json['products'] as List).map((e) => GetCategoryProductsModel.fromJson(json: e)).toList(),
         total: json['total'],
         skip: json['skip'],
@@ -34,7 +34,7 @@ class GetCategoryProductsModel {
   String? returnPolicy;
   int? minimumOrderQuantity;
   Meta? meta;
-  List<Images>? images;
+  List<String>? images;
   String? thumbnail;
   GetCategoryProductsModel({
     this.images,
@@ -83,7 +83,8 @@ class GetCategoryProductsModel {
       returnPolicy: json['returnPolicy'],
       minimumOrderQuantity: json['minimumOrderQuantity'],
       //meta: (json['meta'] as List).map((e)=> Meta.fromJson(e)).toList(),
-      //images: (json['images'] as List).map((e)=> Images.fromJson(e)).toList(),
+      images: (json['images'] as List).map((e)=> e.toString()).toList(),
+      //images: json['images'],
       thumbnail: json['thumbnail'],
     );
   }
@@ -144,22 +145,14 @@ class Meta {
   }
 }
 
-class Images {
-  List<String> images;
-  Images({this.images = const []});
-  factory Images.fromJson({required Map<String, dynamic> json}) {
-    return Images(
-        images: (json['images'] as List).map((e) => e.toString()).toList());
-  }
-}
 
 
 
-class CategoryErrorResponse{
+class CategoryProductsErrorResponse{
   String? message;
-  CategoryErrorResponse({this.message});
-  factory CategoryErrorResponse.fromJson(Map<String, dynamic> json){
-    return CategoryErrorResponse(
+  CategoryProductsErrorResponse({this.message});
+  factory CategoryProductsErrorResponse.fromJson(Map<String, dynamic> json){
+    return CategoryProductsErrorResponse(
       message: json['message']
     );
   }

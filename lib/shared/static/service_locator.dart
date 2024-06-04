@@ -1,10 +1,15 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:e_commerce/data/local/local_datasource.dart';
+import 'package:e_commerce/data/local/local_datasource_implementation.dart';
+import 'package:e_commerce/repostory/repostory_implementation.dart';
 import 'package:e_commerce/shared/static/shared_prefrence.dart';
+import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/remote/remote_datasource.dart';
@@ -31,7 +36,7 @@ Future<void> _registerLazySingleton() async {
   if (sl.isRegistered<Dio>()){
     sl.unregister<Dio>();
     sl.unregister<DioHelper>();
-    sl.unregister<DioHelper>();
+
   }
   final Dio dio = DioHelper().init();
   debugPrint('----------------------- register Dio: ${dio.options.baseUrl} -----------------');
@@ -42,15 +47,19 @@ Future<void> _registerLazySingleton() async {
   final sharedPrefs = await PrefsHelper().init();
   sl.registerLazySingleton<SharedPreferences>(()=> sharedPrefs);
   sl.registerLazySingleton<PrefsHelper>(()=> PrefsHelper());
-  if(sl.isRegistered<NetworkInfo>()){
-    sl.unregister<NetworkInfo>();
-  }
+
+
+  sl.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker(),);
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImplementation(sl()),);
   sl.registerLazySingleton<RemoteDatasource>(
       ()=> RemoteDatasourceImplementation(dio: sl(), dioHelper: sl()));
+  sl.registerLazySingleton<LocalDatasource>(
+      ()=> LocalDatasourceImplementation(prefsHelper: sl()));
 
   if(sl.isRegistered<Repository>()){
     sl.unregister<Repository>();
   }
+  sl.registerLazySingleton<Repository>(() => RepositoryImplementation(remoteDatasource: sl(), networkInfo: sl()),);
   if (sl.isRegistered<NavigationService>()){
     sl.unregister<NavigationService>();
   }
@@ -59,4 +68,5 @@ Future<void> _registerLazySingleton() async {
 
 Future<void> _registerFactory() async {
   sl.registerFactory(()=> ProductsCubit(repository: sl()));
+  sl.registerFactory(()=> CategoriesCubit(repository: sl()));
 }

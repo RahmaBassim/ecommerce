@@ -4,6 +4,7 @@ import 'package:e_commerce/shared/static/bloc_observer.dart';
 import 'package:e_commerce/shared/static/navigation_service.dart';
 import 'package:e_commerce/shared/static/routes.dart';
 import 'package:e_commerce/shared/static/service_locator.dart';
+import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/nav_bar/cubit/nav_bar_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context)=> NavBarCubit()),
             BlocProvider(create: (_)=> sl<ProductsCubit>()),
+            BlocProvider(create: (_)=> sl<CategoriesCubit>()),
           ],
           child: MaterialApp(
             locale: context.locale,

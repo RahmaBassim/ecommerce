@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:string_validator/string_validator.dart';
 
+import '../resources/theme_cubit.dart';
+
 
 class HeaderText extends StatelessWidget {
   final String title;
@@ -281,20 +283,15 @@ class SortContainer extends StatelessWidget {
 }
 
 class CategoryContainer extends StatelessWidget {
-  final String image;
+  final dynamic icon;
   final String categoryName;
-  const CategoryContainer({required this.image,required this.categoryName,super.key});
+  const CategoryContainer({required this.icon,required this.categoryName,super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          child: Image.asset(
-              image,
-            fit: BoxFit.cover,
-          ),
-        ),
+        Icon(icon, color: ColorsManager.softPink,size: 50,),
         Text(
           categoryName,
           style: Theme.of(context).textTheme.displayMedium,
@@ -310,6 +307,46 @@ class CustomLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(child: CircularProgressIndicator());
+  }
+}
+
+class CustomButtonLanguage extends StatelessWidget {
+  final String text;
+  final bool? isBlack;
+  final dynamic function;
+
+  const CustomButtonLanguage({
+    super.key,
+    required this.text,
+    required this.function,
+    this.isBlack=false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: GestureDetector(
+        onTap: function,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color: ColorsManager.softPink
+              //ThemeCubit.get(context).isDark? const Color(0xFF3D4C5D): const Color(0xFFAF914E)
+          ),
+          height: 48.h,
+          width: 135.w,
+          child: Center(
+              child: Text(
+                  text,
+                  style:Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Colors.white
+                  )
+              )),
+        ),
+      ),
+    );
   }
 }
 

@@ -43,5 +43,43 @@ class MyTheme{
       ),
     )
   );
-  static ThemeData darkTheme = ThemeData();
+  static ThemeData darkTheme = ThemeData(
+    textTheme: TextTheme(
+      labelLarge: GoogleFonts.montserrat(
+          fontSize: 24,
+          fontWeight: FontWeight.w800,
+          color: ColorsManager.white
+      ),
+      displayMedium:  GoogleFonts.montserrat(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.white
+      ),
+      displaySmall:  GoogleFonts.montserrat(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: ColorsManager.white
+      ),
+      labelMedium: GoogleFonts.montserrat(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.grey
+      ),
+      labelSmall: GoogleFonts.montserrat(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.pink
+      ),
+      bodyMedium: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.black
+      ),
+      bodyLarge: GoogleFonts.montserrat(
+          fontSize: 34,
+          fontWeight: FontWeight.w600,
+          color: ColorsManager.black
+      ),
+    )
+  );
 }
