@@ -1,3 +1,4 @@
+/*
 import 'package:e_commerce/view/products/widgets/product_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,10 +32,10 @@ class _GridViewProductsState extends State<GridViewProducts> {
             return  Padding(
               padding: const EdgeInsets.all(5.0),
               child:  ProductCart(
-                image: state.categoryResponseModel.products![index].images?.first??"",
-                productName: state.categoryResponseModel.products![index].title??"",
+                image: state.categoryResponseModel[index].images?.first??"",
+                productName: state.categoryResponseModel[index].title??"",
                 //productDescription: state.categoryResponseModel.products![index].description??"",
-                price: state.categoryResponseModel.products![index].price.toString(),
+                price: state.categoryResponseModel[index].price.toString(),
               ),
             );
           }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),);
@@ -43,3 +44,4 @@ class _GridViewProductsState extends State<GridViewProducts> {
     );
   }
 }
+*/

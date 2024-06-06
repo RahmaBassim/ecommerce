@@ -43,7 +43,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                         sl<NavigationService>().navigateTo(Routes.products);
                         CategoriesCubit.get(context).selectCategory(state.categoriesResponse.categories[index].name??'');
 
-                       // ProductsCubit.get(context).getCategoryProduct(state.categoriesResponse.categories[index].name??'');
+                        ProductsCubit.get(context).getCategoryProduct(state.categoriesResponse.categories[index].name??'');
                       },
                       child: Row(
                         children: [

@@ -1,13 +1,17 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:e_commerce/data/firebase/firebase_datasource.dart';
+import 'package:e_commerce/data/firebase/firebase_datasource_impl.dart';
 import 'package:e_commerce/data/local/local_datasource.dart';
 import 'package:e_commerce/data/local/local_datasource_implementation.dart';
 import 'package:e_commerce/repostory/repostory_implementation.dart';
+import 'package:e_commerce/shared/resources/theme/theme_cubit.dart';
 import 'package:e_commerce/shared/static/shared_prefrence.dart';
 import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:e_commerce/view/user_authontication/login/login_cubit/login_cubit.dart';
+import 'package:e_commerce/view/user_authontication/signup/cubit/signup_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -54,13 +58,15 @@ Future<void> _registerLazySingleton() async {
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImplementation(sl()),);
   sl.registerLazySingleton<RemoteDatasource>(
       ()=> RemoteDatasourceImplementation(dio: sl(), dioHelper: sl()));
+  sl.registerLazySingleton<FirebaseDatasource>(
+          ()=> FirebaseDatasourceImpl());
   sl.registerLazySingleton<LocalDatasource>(
       ()=> LocalDatasourceImplementation(prefsHelper: sl()));
 
   if(sl.isRegistered<Repository>()){
     sl.unregister<Repository>();
   }
-  sl.registerLazySingleton<Repository>(() => RepositoryImplementation(remoteDatasource: sl(), networkInfo: sl()),);
+  sl.registerLazySingleton<Repository>(() => RepositoryImplementation(remoteDatasource: sl(), networkInfo: sl(),firebaseDatasource: sl()),);
   if (sl.isRegistered<NavigationService>()){
     sl.unregister<NavigationService>();
   }
@@ -71,4 +77,7 @@ Future<void> _registerFactory() async {
   sl.registerFactory(()=> ProductsCubit(repository: sl()));
   sl.registerFactory(()=> CategoriesCubit(repository: sl()));
   sl.registerFactory(()=> LoginCubit(repository: sl()));
+  sl.registerFactory(()=> SignupCubit(repository: sl()));
+  sl.registerFactory(()=> ThemeCubit());
+
 }

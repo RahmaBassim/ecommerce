@@ -1,26 +1,26 @@
-class CategoryProductsResponseModel {
-  List<GetCategoryProductsModel> products;
+class ProductsResponseModel {
+  List<ProductModel> products;
   int? total;
   int? skip;
   int? limit;
-  CategoryProductsResponseModel({this.products= const [], this.total, this.skip, this.limit});
-  factory CategoryProductsResponseModel.fromJson({required Map<String, dynamic> json}) {
-    return CategoryProductsResponseModel(
-        products: (json['products'] as List).map((e) => GetCategoryProductsModel.fromJson(json: e)).toList(),
+  ProductsResponseModel({this.products= const [], this.total, this.skip, this.limit});
+  factory ProductsResponseModel.fromJson({required Map<String, dynamic> json}) {
+    return ProductsResponseModel(
+        products: (json['products'] as List).map((e) => ProductModel.fromJson(json: e)).toList(),
         total: json['total'],
         skip: json['skip'],
         limit: json['limit']);
   }
 }
 
-class GetCategoryProductsModel {
+class ProductModel {
   int? id;
   String? title;
   String? description;
   String? category;
   double? price;
-  double? discountPercentage;
-  double? rate;
+  num? discountPercentage;
+  num? rate;
   int? stock;
   Tags? tags;
   String? brand;
@@ -37,7 +37,7 @@ class GetCategoryProductsModel {
   Meta? meta;
   List<String>? images;
   String? thumbnail;
-  GetCategoryProductsModel({
+  ProductModel({
     this.images,
     this.dimensions,
     this.price,
@@ -61,9 +61,9 @@ class GetCategoryProductsModel {
     this.warrantyInformation,
     this.weight,
   });
-  factory GetCategoryProductsModel.fromJson(
+  factory ProductModel.fromJson(
       {required Map<String, dynamic> json}) {
-    return GetCategoryProductsModel(
+    return ProductModel(
       id: json['id'],
       title: json['title'],
       description: json['description'],
@@ -100,9 +100,9 @@ class Tags {
 }
 
 class Dimensions {
-  double? width;
-  double? height;
-  double? depth;
+  num? width;
+  num? height;
+  num? depth;
   Dimensions({this.width, this.height, this.depth});
   Dimensions.fromJson(Map<String, dynamic> json) {
     width = json['width'];

@@ -1,3 +1,4 @@
+import 'package:e_commerce/models/response/get_category_products/get_catedory_products_model.dart';
 import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,38 +20,43 @@ class ListOfProducts extends StatefulWidget {
 class _ListOfProductsState extends State<ListOfProducts> {
   @override
   void initState() {
-
+ProductsCubit.get(context).getAllProducts();
     super.initState();
   }
   @override
   Widget build(BuildContext context) { 
     return BlocBuilder<ProductsCubit, ProductsState>(
+
         builder: (context, state){
           print('state $state');
-          if (state is ProductsLoadingState){
-            return const CustomLoadingIndicator();
-          }else if(state is ProductsSuccessState){
+
+         if(ProductsCubit.get(context).allProducts.isNotEmpty){
+            List<ProductModel> allProducts = ProductsCubit.get(context).allProducts;
             return SizedBox(
               width: 500.w,
-              height: 300.h,
+              height: 330.h,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: List.generate(
-                state.categoryResponseModel.products!.length >=5 ? 5:state.categoryResponseModel.products!.length,
+                    allProducts.length >=5 ? 5:allProducts.length,
                  (index){
                   return  Padding(
                     padding: const EdgeInsets.all(5.0),
                     child:  ProductCart(
-                      image: state.categoryResponseModel.products![index].images?.first??"",
-                      productName: state.categoryResponseModel.products![index].title??"",
+                      image: allProducts[index].images?.first??"",
+                      productName: allProducts[index].title??"",
                       //productDescription: state.categoryResponseModel.products![index].description??"",
-                      price: state.categoryResponseModel.products![index].price.toString()??"",
+                      price: allProducts[index].price.toString()??"",
                     ),
                   );
                  }),
               ),
             );
-          }return const SizedBox();
+          }
+         else if (state is ProductsLoadingState){
+            return const CustomLoadingIndicator();
+          }
+            return const SizedBox();
         }
         );
   }

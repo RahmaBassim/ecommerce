@@ -20,19 +20,19 @@ class RemoteDatasourceImplementation extends RemoteDatasource{
 
   
   @override
-  Future<CategoryProductsResponseModel> allProducts({required CategoryProductsRequest request}) async {
+  Future<ProductsResponseModel> allProducts() async {
     final response = await dio.get(Constants.allProducts);
     if (response.statusCode == 200){
-      return CategoryProductsResponseModel.fromJson(json: response.data);
+      return ProductsResponseModel.fromJson(json: response.data);
     }else {
       throw CategoryProductsErrorResponse.fromJson(response.data);
     }
   }
   @override
-  Future<CategoryProductsResponseModel> categoryProducts({required CategoryProductsRequest request}) async {
+  Future<ProductsResponseModel> categoryProducts({required CategoryProductsRequest request}) async {
     final response = await dio.get('${Constants.categoryProducts}${request.categoryName}');
     if (response.statusCode == 200){
-      return CategoryProductsResponseModel.fromJson(json: response.data);
+      return ProductsResponseModel.fromJson(json: response.data);
     }else {
       throw CategoryProductsErrorResponse.fromJson(response.data);
     }
@@ -48,10 +48,10 @@ class RemoteDatasourceImplementation extends RemoteDatasource{
     }
     
   @override
-  Future<SignupResponseModel> signup({required SignupRequestModel request}) async {
+  Future<String> signup({required UserModel request}) async {
     final response = await dio.post(Constants.signup);
     if (response.statusCode == 200){
-      return SignupResponseModel.fromJson(response.data);
+      return response.data['id'].toString();
     }else {
       throw SignupErrorResponse.fromJson(response.data);
     }

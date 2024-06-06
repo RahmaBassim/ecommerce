@@ -8,12 +8,38 @@ part 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
   Repository repository;
-  CategoryProductsResponseModel? categoryProducts;
+  List<ProductModel> categoryProducts=[];
+  List<ProductModel> allProducts=[];
+  String? category;
   ProductsCubit({required this.repository}) : super(ProductsInitial());
 
   static ProductsCubit get(context)=> BlocProvider.of(context);
 
   getCategoryProduct(String categoryName) async {
+    emit(ProductsLoadingState());
+    // category = null;
+    categoryProducts = [];
+    category = categoryName;
+    final categoryProductOrFailure = await repository.categoryProducts(request: CategoryProductsRequest(
+      categoryName: categoryName
+    ));
+    categoryProductOrFailure.fold(
+        (failure)=> emit(ProductsErrorState(message: failure.message)),
+        (success) {
+          categoryProducts = success.products;
+          emit(ProductsSuccessState(/*categoryResponseModel: categoryProducts,allProducts: allProducts*/));
+        }
+    );
+  }
+  getAllProducts() async {
+
+    if(allProducts.isNotEmpty){
+      category = null;
+      categoryProducts = [];
+      emit(ProductsSuccessState(/*categoryResponseModel: categoryProducts,allProducts: allProducts*/));
+        return ;
+    }
+
     emit(ProductsLoadingState());
     /*
     String token = sl<LocalDatasource>().getToken();
@@ -21,14 +47,13 @@ class ProductsCubit extends Cubit<ProductsState> {
       emit(ProductsEmptyState());
       return;
     }*/
-    final categoryProductOrFailure = await repository.categoryProducts(request: CategoryProductsRequest(
-      categoryName: categoryName
-    ));
+    final categoryProductOrFailure = await repository.allProducts();
     categoryProductOrFailure.fold(
-        (failure)=> emit(ProductsErrorState(message: failure.message)),
-        (success) {
-          categoryProducts = success;
-          emit(ProductsSuccessState(categoryResponseModel: success));
+            (failure)=> emit(ProductsErrorState(message: failure.message)),
+            (success) {
+          allProducts = success.products;
+          print('------------------------allProducts length: ${allProducts.length} ------------------');
+          emit(ProductsSuccessState(/*categoryResponseModel: categoryProducts,allProducts: allProducts)*/));
         }
     );
   }

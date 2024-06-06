@@ -1,14 +1,14 @@
-/*
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/data/local/local_datasource.dart';
-import 'package:e_commerce/shared/resources/theme.dart';
+import 'package:e_commerce/shared/resources/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../static/service_locator.dart';
+import '../../static/service_locator.dart';
 
-class ThemeCubit extends Cubit<ThemeModeChanged> {
-  ThemeCubit() : super(ThemeModeChanged(userTheme: MyTheme.lightTheme));
+
+class ThemeCubit extends Cubit<ThemeModeChangedState> {
+  ThemeCubit() : super(ThemeModeChangedState(userTheme: MyTheme.lightTheme));
   bool _isDark = false;
 
   bool get isDark => _isDark;
@@ -23,41 +23,48 @@ class ThemeCubit extends Cubit<ThemeModeChanged> {
   }
 
   Future<void> _changeTheme(String theme) async {
-    final response =
+
     await sl<LocalDatasource>().setData(key:'theme', value: theme);
     currentTheme = theme;
     _checkTheme(theme);
   }
+  toggleTheme(){
+    if(isDark){
+      toLightMode();
+    }else{
+      toDarkMode();
+    }
 
+  }
   void toDarkMode() => _changeTheme('dark');
 
   void toLightMode() => _changeTheme('light');
 
   _checkTheme(String theme) {
-    if (currentTheme == 'dark') {
+    if (theme == 'dark') {
       _isDark = true;
-      emit(ThemeModeChanged(userTheme: MyTheme.darkTheme));
+      emit(ThemeModeChangedState(userTheme: MyTheme.darkTheme));
 
     } else {
 
       _isDark = false;
-      emit(ThemeModeChanged(userTheme: MyTheme.lightTheme));
+      emit(ThemeModeChangedState(userTheme: MyTheme.lightTheme));
     }
   }
 }
 
-class ThemeModeChanged {
+class ThemeModeChangedState {
   final ThemeData userTheme;
 
-  const ThemeModeChanged({required this.userTheme});
+  const ThemeModeChangedState({required this.userTheme});
 
-  ThemeModeChanged copyWith({
+  ThemeModeChangedState copyWith({
     ThemeData? userTheme,
   }) {
-    return ThemeModeChanged(
+    return ThemeModeChangedState(
       userTheme: userTheme ?? this.userTheme,
     );
   }
 
   List<Object?> get props => [userTheme];
-}*/
+}

@@ -1,3 +1,4 @@
+import 'package:e_commerce/models/response/get_category_products/get_catedory_products_model.dart';
 import 'package:e_commerce/shared/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,7 @@ class ProductCart extends StatelessWidget {
   final String productName;
   //final String productDescription;
   final String price;
-
+  // final ProductModel product;
   const ProductCart({
     required this.productName,
     //required this.productDescription,
@@ -20,7 +21,7 @@ class ProductCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 170.w,
-      height: 330.h,
+      // height: 330.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: ColorsManager.white
@@ -31,7 +32,7 @@ class ProductCart extends StatelessWidget {
         children: [
           Container(
             width: 170.w,
-            height: 200.h,
+            height: 100.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(

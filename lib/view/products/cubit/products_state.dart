@@ -7,8 +7,12 @@ class ProductsInitial extends ProductsState {}
 class ProductsLoadingState extends ProductsState {}
 class ProductsEmptyState extends ProductsState {}
 class ProductsSuccessState extends ProductsState {
-  final CategoryProductsResponseModel categoryResponseModel;
-  ProductsSuccessState({required this.categoryResponseModel});
+
+
+}
+class CategoryProductsSuccessState extends ProductsState {
+  final ProductsResponseModel categoryResponseModel;
+  CategoryProductsSuccessState({required this.categoryResponseModel});
 }
 class ProductsErrorState extends ProductsState {
   final String? message;

@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if(state is LoginSuccessState){
                       sl<NavigationService>().navigateTo(Routes.mainHome);
                     }else if(state is LoginErrorState){
-                      showToast('Login Failed');
+                      showToast(state.error);
                     }
 
                   },
@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if(formKey.currentState!.validate()){
                             LoginCubit.get(context).login(request: LoginRequestModel(
                               password: passwordController.text,
-                              userName: mailController.text,
+                              email: mailController.text,
                             ));
                           }
 

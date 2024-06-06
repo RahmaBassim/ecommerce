@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce/data/firebase/firebase_datasource.dart';
 import 'package:e_commerce/models/request/login_request/login_request.dart';
 import 'package:e_commerce/models/response/get_categories/get_categories.dart';
 import 'package:e_commerce/models/response/login_response/loginResponse.dart';
@@ -15,15 +16,17 @@ import '../shared/static/internet_checker.dart';
 
 class RepositoryImplementation extends Repository{
   final RemoteDatasource remoteDatasource;
+  final FirebaseDatasource firebaseDatasource;
   final NetworkInfo networkInfo;
 
   RepositoryImplementation({
     required this.remoteDatasource,
-    required this.networkInfo
+    required this.networkInfo,
+    required this.firebaseDatasource,
   });
 
   @override
-  Future<Either<CategoryProductsErrorResponse, CategoryProductsResponseModel>> categoryProducts({required CategoryProductsRequest request}) async {
+  Future<Either<CategoryProductsErrorResponse, ProductsResponseModel>> categoryProducts({required CategoryProductsRequest request}) async {
     final bool isConnected = await networkInfo.isConnected;
     if (isConnected){
       try{
@@ -41,11 +44,11 @@ class RepositoryImplementation extends Repository{
     }
   }
   @override
-  Future<Either<CategoryProductsErrorResponse, CategoryProductsResponseModel>> allProducts({required CategoryProductsRequest request}) async {
+  Future<Either<CategoryProductsErrorResponse, ProductsResponseModel>> allProducts() async {
     final bool isConnected = await networkInfo.isConnected;
     if (isConnected){
       try{
-        final categoryProduct = await remoteDatasource.categoryProducts(request: request);
+        final categoryProduct = await remoteDatasource.allProducts();
         return Right(categoryProduct);
       } on CategoryProductsErrorResponse catch (error){
         debugPrint('-------------- onCategory error: $error --------------');
@@ -79,7 +82,7 @@ class RepositoryImplementation extends Repository{
   }
 
   @override
-  Future<Either<SignupErrorResponse, SignupResponseModel>> signup ({required SignupRequestModel request}) async {
+  Future<Either<SignupErrorResponse, String>> signup ({required UserModel request}) async {
     final bool isConnected= await networkInfo.isConnected;
     if (isConnected){
       try{
@@ -98,11 +101,11 @@ class RepositoryImplementation extends Repository{
   }
 
   @override
-  Future<Either<LoginErrorResponseModel, LoginSuccessResponseModel>> login({required LoginRequestModel request}) async {
+  Future<Either<LoginErrorResponseModel, UserModel>> login({required LoginRequestModel request}) async {
     final bool isConnected = await networkInfo.isConnected;
     if(isConnected){
       try{
-        final login = await remoteDatasource.login(request: request);
+        final login = await firebaseDatasource.login(request: request);
         return Right(login);
       } on LoginErrorResponseModel catch (error){
         debugPrint('-------------- onLogin error $error ---------------');
@@ -113,6 +116,25 @@ class RepositoryImplementation extends Repository{
       }
     } else {
       return Left(LoginErrorResponseModel(message: StringsManager.noInternetConnection));
+    }
+  }
+
+  @override
+  Future<Either<SignupErrorResponse, UserModel>> saveUSer({required UserModel request}) async{
+  final bool isConnected = await networkInfo.isConnected;
+    if(isConnected){
+      try{
+        final login = await firebaseDatasource.saveUser(request: request);
+        return Right(login);
+      } on SignupErrorResponse catch (error){
+        debugPrint('-------------- onLogin error $error ---------------');
+        return Left(error);
+      } catch (error) {
+        debugPrint('--------------- login error $error -------------');
+        return Left(SignupErrorResponse(message: ErrorHandler.handle(error).failure));
+      }
+    } else {
+      return Left(SignupErrorResponse(message: StringsManager.noInternetConnection));
     }
   }
 }

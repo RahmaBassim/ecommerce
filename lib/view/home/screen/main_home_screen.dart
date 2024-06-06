@@ -1,4 +1,6 @@
 import 'package:e_commerce/shared/resources/colors_manager.dart';
+import 'package:e_commerce/shared/resources/theme/theme_cubit.dart';
+import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +21,9 @@ class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        ThemeCubit.get(context).toggleTheme();
+      }),
       backgroundColor: ColorsManager.light,
       body: SingleChildScrollView(
         child: Column(
@@ -37,6 +42,7 @@ class MainHomeScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: GestureDetector(
                   onTap: (){
+                  ProductsCubit.get(context).getAllProducts();
                     Navigator.pushNamed(context, Routes.products);
                   },
                   child: Row(

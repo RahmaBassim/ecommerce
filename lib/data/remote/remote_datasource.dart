@@ -10,9 +10,9 @@ import '../../models/response/signup_response/signup_response.dart';
 
 abstract class RemoteDatasource{
 
-  Future<CategoryProductsResponseModel> categoryProducts({required CategoryProductsRequest request});
-  Future<CategoryProductsResponseModel> allProducts({required CategoryProductsRequest request});
+  Future<ProductsResponseModel> categoryProducts({required CategoryProductsRequest request});
+  Future<ProductsResponseModel> allProducts();
   Future<GetCategoriesResponse> categories();
-  Future<SignupResponseModel> signup({required SignupRequestModel request});
+  Future<String> signup({required UserModel request});
   Future<LoginSuccessResponseModel> login({required LoginRequestModel request});
 }

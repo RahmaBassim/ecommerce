@@ -1,5 +1,6 @@
 import 'package:e_commerce/shared/resources/routes_manager.dart';
 import 'package:e_commerce/shared/resources/theme/theme.dart';
+import 'package:e_commerce/shared/resources/theme/theme_cubit.dart';
 import 'package:e_commerce/shared/static/bloc_observer.dart';
 import 'package:e_commerce/shared/static/navigation_service.dart';
 import 'package:e_commerce/shared/static/routes.dart';
@@ -18,8 +19,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'firebase_options.dart';
 
 
-void main() async{
-  Bloc.observer= MyBlocObserver();
+void main() async {
+  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,13 +28,13 @@ void main() async{
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
-    EasyLocalization(
+      EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('ar')],
         path: 'assets/translation',
         fallbackLocale: const Locale('ar'),
         startLocale: const Locale('en'),
         child: const MyApp(),
-    )
+      )
   );
 }
 
@@ -46,23 +47,30 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 1034),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child){
+      builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context)=> NavBarCubit()),
-            BlocProvider(create: (_)=> sl<ProductsCubit>()),
-            BlocProvider(create: (_)=> sl<CategoriesCubit>()),
-            BlocProvider(create: (_)=> sl<LoginCubit>()),
+            BlocProvider(create: (context) => NavBarCubit()),
+            BlocProvider(create: (_) => sl<ProductsCubit>()),
+            BlocProvider(create: (_) => sl<CategoriesCubit>()),
+            BlocProvider(create: (_) => sl<LoginCubit>()),
+            BlocProvider(create: (_) => sl<ThemeCubit>()),
           ],
-          child: MaterialApp(
-            locale: context.locale,
-            supportedLocales: context.supportedLocales,
-            localizationsDelegates: context.localizationDelegates,
-            theme: MyTheme.lightTheme,
-            debugShowCheckedModeBanner: false,
-            navigatorKey: sl<NavigationService>().navigatorKey,
-            initialRoute: Routes.login,
-            onGenerateRoute: RoutesManager.onGenerateRoute,
+          child: BlocBuilder<ThemeCubit, ThemeModeChangedState>(
+
+            builder: (context, state) {
+              return MaterialApp(
+                locale: context.locale,
+                supportedLocales: context.supportedLocales,
+                localizationsDelegates: context.localizationDelegates,
+                theme:state.userTheme,
+
+                debugShowCheckedModeBanner: false,
+                navigatorKey: sl<NavigationService>().navigatorKey,
+                initialRoute: Routes.login,
+                onGenerateRoute: RoutesManager.onGenerateRoute,
+              );
+            },
           ),
         );
       },

@@ -291,7 +291,7 @@ class CategoryContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon, color: ColorsManager.softPink,size: 50,),
+        Icon(icon, color: ColorsManager.softPink,size: 25,),
         Text(
           categoryName,
           style: Theme.of(context).textTheme.displayMedium,

@@ -44,7 +44,7 @@ class MyTheme{
       ),
     )
   );
- /* static ThemeData darkTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData(
     textTheme: TextTheme(
       labelLarge: GoogleFonts.montserrat(
           fontSize: 24,
@@ -82,5 +82,5 @@ class MyTheme{
           color: ColorsManager.black
       ),
     )
-  );*/
+  );
 }

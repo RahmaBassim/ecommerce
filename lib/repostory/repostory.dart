@@ -11,9 +11,10 @@ import '../models/request/category_products_request/category_request.dart';
 import '../models/response/get_category_products/get_catedory_products_model.dart';
 
 abstract class Repository {
-  Future<Either<CategoryProductsErrorResponse, CategoryProductsResponseModel>> categoryProducts({required CategoryProductsRequest request});
-  Future<Either<CategoryProductsErrorResponse, CategoryProductsResponseModel>> allProducts({required CategoryProductsRequest request});
+  Future<Either<CategoryProductsErrorResponse, ProductsResponseModel>> categoryProducts({required CategoryProductsRequest request});
+  Future<Either<CategoryProductsErrorResponse, ProductsResponseModel>> allProducts();
   Future<Either<CategoriesErrorResponse, GetCategoriesResponse>> categories();
-  Future<Either<SignupErrorResponse, SignupResponseModel>> signup({required SignupRequestModel request});
-  Future<Either<LoginErrorResponseModel, LoginSuccessResponseModel>> login({required LoginRequestModel request});
+  Future<Either<SignupErrorResponse, String>> signup({required UserModel request});
+  Future<Either<LoginErrorResponseModel, UserModel>> login({required LoginRequestModel request});
+  Future<Either<SignupErrorResponse, UserModel>> saveUSer({required UserModel request});
 }
