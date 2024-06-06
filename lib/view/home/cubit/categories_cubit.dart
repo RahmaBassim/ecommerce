@@ -11,7 +11,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Repository repository;
   GetCategoriesResponse? categoriesResponse;
   CategoriesCubit({required this.repository}) : super(CategoriesInitial());
-
+  String? selectedCategory;
   static CategoriesCubit get(context)=> BlocProvider.of(context);
 
   getCategories() async {
@@ -26,8 +26,13 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         (failure)=> emit(CategoriesErrorState(message: failure.message)),
         (success){
           categoriesResponse = success;
-          emit(CategoriesSuccessState(categoriesResponse: success));
+          selectedCategory =success.categories.isNotEmpty? success.categories.first.name:'';
+          emit(CategoriesSuccessState(categoriesResponse: success,selectedCategory: selectedCategory));
         }
     );
+  }
+  selectCategory(String selected){
+      selectedCategory = selected;
+      emit(CategoriesSuccessState(categoriesResponse: categoriesResponse??GetCategoriesResponse(categories: []), selectedCategory: selectedCategory));
   }
 }

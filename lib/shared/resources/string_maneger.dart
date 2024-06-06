@@ -11,6 +11,7 @@ class StringsManager{
   static const String requiredData ='requiredData';
   static const String passwordValidate ='passwordValidate';
   static const String enterMail ='enterMail';
+  static const String enterName ='enterName';
   static const String enterValidPassword ='enterValidPassword';
   static const String validMail ='validMail';
   static const String enterPassword ='enterPassword';

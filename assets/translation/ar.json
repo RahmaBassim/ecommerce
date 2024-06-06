@@ -11,6 +11,7 @@
   "requiredData": "مطلوب",
   "passwordValidate": "يجب أن يكون أكثر من 6 أحرف",
   "enterMail": "أدخل البريد",
+  "enterName": "اسم المستخدم",
   "enterPassword": "أدخل كلمة المرور",
   "confirmPassword": "تأكيد كلمة المرور",
   "validateConfirmPass": "أدخل نفس قيمة كلمة المرور",

@@ -1,3 +1,4 @@
+import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,11 +19,11 @@ class ListOfProducts extends StatefulWidget {
 class _ListOfProductsState extends State<ListOfProducts> {
   @override
   void initState() {
-    ProductsCubit.get(context).getCategoryProduct("smartphones");
+
     super.initState();
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state){
           print('state $state');

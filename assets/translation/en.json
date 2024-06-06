@@ -11,6 +11,7 @@
   "requiredData": "Required",
   "passwordValidate": "It must be more than 6 characters",
   "enterMail": "Enter Mail",
+  "enterName": "User Name",
   "enterPassword" : "Enter Password",
   "confirmPassword": "Confirm Password",
   "validateConfirmPass": "Enter same value of password",

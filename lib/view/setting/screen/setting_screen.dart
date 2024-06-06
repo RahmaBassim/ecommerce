@@ -8,9 +8,14 @@ import '../../../shared/static/constants.dart';
 import '../../../shared/static/reusable_components.dart';
 import '../widgets/list_tile_widget.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
 
+  @override
+  State<SettingScreen> createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +38,7 @@ class SettingScreen extends StatelessWidget {
                               AssetsManager.closeIcon,
                               alignment: Alignment.topRight,
                             )),
-                        actions: <Widget>[
+                        actions: [
                           Column(
                             children: [
                               CustomButtonLanguage(
@@ -41,13 +46,6 @@ class SettingScreen extends StatelessWidget {
                                   function: () {
                                     context.setLocale(
                                         const Locale(Constants.arCode));
-                                   /* EditUserProfileCubit.get(context)
-                                        .editUserProfile(
-                                        editProfileRequestModel:
-                                        EditProfileRequestModel(
-                                            language:
-                                            Constants
-                                                .arCode));*/
                                   }),
                                SizedBox(
                                 height: 24.h,
@@ -57,13 +55,6 @@ class SettingScreen extends StatelessWidget {
                                   function: () {
                                     context.setLocale(
                                         const Locale(Constants.enCode));
-                                    /*EditUserProfileCubit.get(context)
-                                        .editUserProfile(
-                                        editProfileRequestModel:
-                                        EditProfileRequestModel(
-                                            language:
-                                            Constants
-                                                .enCode));*/
                                   }),
                             ],
                           )

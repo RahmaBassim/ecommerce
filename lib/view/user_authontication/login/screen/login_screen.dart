@@ -1,11 +1,16 @@
+import 'package:e_commerce/models/request/login_request/login_request.dart';
 import 'package:e_commerce/shared/resources/colors_manager.dart';
 import 'package:e_commerce/shared/resources/string_maneger.dart';
+import 'package:e_commerce/shared/static/navigation_service.dart';
+import 'package:e_commerce/view/user_authontication/login/login_cubit/login_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../shared/static/reusable_components.dart';
 import '../../../../shared/static/routes.dart';
+import '../../../../shared/static/service_locator.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -44,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 HeaderText(title: StringsManager.headerTitle.tr(),),
                 SizedBox(height: 100.h,),
                 CustomTextFormField(
-                    validate: CustomValidation.validateEmail,
+                    validate: CustomValidation.validateName,
                     keyboardType: TextInputType.text,
                     textEditingController: mailController,
                     hintText: StringsManager.enterMail.tr(),
@@ -80,12 +85,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                 ),
                 SizedBox(height: 100.h,),
-                CustomButton(
-                  onTap: (){
-                    Navigator.pushNamedAndRemoveUntil(context, Routes.customHome, (route)=>false);
+                BlocConsumer<LoginCubit, LoginState>(
+                  listenWhen: (previous, current) => current is LoginSuccessState || current is LoginErrorState,
+                  listener: (context, state) {
+                    if(state is LoginSuccessState){
+                      sl<NavigationService>().navigateTo(Routes.mainHome);
+                    }else if(state is LoginErrorState){
+                      showToast('Login Failed');
+                    }
+
                   },
-                  title: StringsManager.login.tr(),
-                ),
+  builder: (context, state) {
+                    if(state is LoginLoading){
+                      return const Center(child:  CircularProgressIndicator());
+                    }else{
+                      return CustomButton(
+                        onTap: (){
+                          if(formKey.currentState!.validate()){
+                            LoginCubit.get(context).login(request: LoginRequestModel(
+                              password: passwordController.text,
+                              userName: mailController.text,
+                            ));
+                          }
+
+
+                        },
+                        title: StringsManager.login.tr(),
+                      );
+                    }
+
+
+  },
+),
                 SizedBox(height: 30.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

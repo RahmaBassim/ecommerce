@@ -4,9 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:string_validator/string_validator.dart';
-
-import '../resources/theme_cubit.dart';
 
 
 class HeaderText extends StatelessWidget {
@@ -52,6 +51,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style:const TextStyle(color: ColorsManager.black,fontSize: 10),
       validator: widget.validate,
       keyboardType: widget.keyboardType,
       controller: widget.textEditingController,
@@ -92,7 +92,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         fillColor: ColorsManager.softGrey,
         filled: true,
         hintText: widget.hintText,
-        hintStyle: Theme.of(context).textTheme.labelMedium,
+        hintStyle: Theme.of(context).textTheme.displaySmall,
       ),
     );
   }
@@ -348,6 +348,18 @@ class CustomButtonLanguage extends StatelessWidget {
       ),
     );
   }
+}
+
+
+void showToast(String message) {
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: ColorsManager.softPink,
+      textColor:ColorsManager.black,
+      fontSize: 10.sp);
 }
 
 

@@ -1,9 +1,9 @@
 class CategoryProductsResponseModel {
-  List<GetCategoryProductsModel>? products;
+  List<GetCategoryProductsModel> products;
   int? total;
   int? skip;
   int? limit;
-  CategoryProductsResponseModel({this.products, this.total, this.skip, this.limit});
+  CategoryProductsResponseModel({this.products= const [], this.total, this.skip, this.limit});
   factory CategoryProductsResponseModel.fromJson({required Map<String, dynamic> json}) {
     return CategoryProductsResponseModel(
         products: (json['products'] as List).map((e) => GetCategoryProductsModel.fromJson(json: e)).toList(),
@@ -31,6 +31,7 @@ class GetCategoryProductsModel {
   String? shippingInformation;
   String? availabilityStatus;
   List<Reviews>? reviews;
+
   String? returnPolicy;
   int? minimumOrderQuantity;
   Meta? meta;
@@ -84,7 +85,7 @@ class GetCategoryProductsModel {
       minimumOrderQuantity: json['minimumOrderQuantity'],
       //meta: (json['meta'] as List).map((e)=> Meta.fromJson(e)).toList(),
       images: (json['images'] as List).map((e)=> e.toString()).toList(),
-      //images: json['images'],
+
       thumbnail: json['thumbnail'],
     );
   }

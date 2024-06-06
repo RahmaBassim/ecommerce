@@ -7,6 +7,7 @@ import 'package:e_commerce/repostory/repostory_implementation.dart';
 import 'package:e_commerce/shared/static/shared_prefrence.dart';
 import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
+import 'package:e_commerce/view/user_authontication/login/login_cubit/login_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -69,4 +70,5 @@ Future<void> _registerLazySingleton() async {
 Future<void> _registerFactory() async {
   sl.registerFactory(()=> ProductsCubit(repository: sl()));
   sl.registerFactory(()=> CategoriesCubit(repository: sl()));
+  sl.registerFactory(()=> LoginCubit(repository: sl()));
 }

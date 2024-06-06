@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTheme{
 
   static ThemeData lightTheme = ThemeData(
+      useMaterial3: false,
     textTheme: TextTheme(
       labelLarge: GoogleFonts.montserrat(
         fontSize: 24,

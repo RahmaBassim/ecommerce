@@ -38,7 +38,6 @@ class FeaturesWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20.h,),
-        const CategoryWidget(),
       ],
     );
   }
