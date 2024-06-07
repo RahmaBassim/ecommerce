@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTheme{
 
   static ThemeData lightTheme = ThemeData(
+      scaffoldBackgroundColor: ColorsManager.softGrey,
       useMaterial3: false,
     textTheme: TextTheme(
       labelLarge: GoogleFonts.montserrat(
@@ -45,6 +46,7 @@ class MyTheme{
     )
   );
   static ThemeData darkTheme = ThemeData(
+      scaffoldBackgroundColor: ColorsManager.black,
     textTheme: TextTheme(
       labelLarge: GoogleFonts.montserrat(
           fontSize: 24,

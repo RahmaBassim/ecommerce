@@ -1,5 +1,4 @@
 import 'package:e_commerce/shared/resources/routes_manager.dart';
-import 'package:e_commerce/shared/resources/theme/theme.dart';
 import 'package:e_commerce/shared/resources/theme/theme_cubit.dart';
 import 'package:e_commerce/shared/static/bloc_observer.dart';
 import 'package:e_commerce/shared/static/navigation_service.dart';
@@ -64,10 +63,9 @@ class MyApp extends StatelessWidget {
                 supportedLocales: context.supportedLocales,
                 localizationsDelegates: context.localizationDelegates,
                 theme:state.userTheme,
-
                 debugShowCheckedModeBanner: false,
                 navigatorKey: sl<NavigationService>().navigatorKey,
-                initialRoute: Routes.login,
+                initialRoute: Routes.onBoarding,
                 onGenerateRoute: RoutesManager.onGenerateRoute,
               );
             },

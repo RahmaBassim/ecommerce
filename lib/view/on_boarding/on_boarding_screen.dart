@@ -71,10 +71,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       currentIndex = index;
                     });
                   }
-                  /*  (int index){
-                setState(() {
-                  currentIndex = index;
-                });*/
                 },
                 itemBuilder: (context, index) => builderItem(pages[index])))
           ],

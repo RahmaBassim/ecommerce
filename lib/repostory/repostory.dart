@@ -2,9 +2,8 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/models/request/login_request/login_request.dart';
-import 'package:e_commerce/models/request/signup_request/signup_request.dart';
 import 'package:e_commerce/models/response/get_categories/get_categories.dart';
-import 'package:e_commerce/models/response/login_response/loginResponse.dart';
+import 'package:e_commerce/models/response/login_response/login_response.dart';
 import 'package:e_commerce/models/response/signup_response/signup_response.dart';
 
 import '../models/request/category_products_request/category_request.dart';

@@ -33,17 +33,6 @@ class UserModel {
       'phone':phone
     };
   }
-  /*SignupModel.fromJson(QueryDocumentSnapshot snapshot){
-    final json = snapshot.
-    id=json['id'];
-    email=json['email'];
-
-    fullName='${json['name']['firstname'].toString()}${json['name']['lastname'].toString()}';
-    username=json['username'];
-    phone=json['phone'];
-    password=json['password'];
-    address=AddressModel.fromJson(json: json['address']);
-  }*/
 }
 class FullName{
   String? firstName;
@@ -71,7 +60,7 @@ class AddressModel{
       street = json?['street'];
       number = json?['number'];
       zipcode = json?['zipcode'];
-     geolocation = Geolocation()/*.fromJson(json: json['geolocation'])*/;
+     geolocation = Geolocation();
   }
  Map<String,dynamic> toJson() =>{
     'city':city,

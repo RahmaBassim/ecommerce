@@ -1,5 +1,4 @@
 
-import '../get_category_products/get_catedory_products_model.dart';
 
 class CategoriesModel{
   String? slug;

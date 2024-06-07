@@ -1,5 +1,5 @@
-import 'package:e_commerce/models/response/get_category_products/get_catedory_products_model.dart';
 import 'package:e_commerce/shared/resources/colors_manager.dart';
+import 'package:e_commerce/shared/resources/theme/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,12 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductCart extends StatelessWidget {
   final String image;
   final String productName;
-  //final String productDescription;
   final String price;
-  // final ProductModel product;
   const ProductCart({
     required this.productName,
-    //required this.productDescription,
     required this.image,
     required this.price,
     super.key});
@@ -24,7 +21,7 @@ class ProductCart extends StatelessWidget {
       // height: 330.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: ColorsManager.white
+        color: ThemeCubit.get(context).isDark ? ColorsManager.softPink : ColorsManager.white,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -55,12 +52,6 @@ class ProductCart extends StatelessWidget {
               price,
               style: Theme.of(context).textTheme.displaySmall,
             ),
-         /* Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Text(
-              productDescription,
-              style: Theme.of(context).textTheme.displaySmall,
-            ),*/
           ),
         ],
       ),

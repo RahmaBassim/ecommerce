@@ -16,11 +16,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   getCategories() async {
     emit(CategoriesLoadingState());
-    /*String token= sl<LocalDatasource>().getToken();
-    if(token.isEmpty){
-      emit(CategoriesEmptyState());
-      return;
-    }*/
     final categoryOrFailure = await repository.categories();
     categoryOrFailure.fold(
         (failure)=> emit(CategoriesErrorState(message: failure.message)),

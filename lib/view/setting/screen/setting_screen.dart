@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../shared/resources/assets_manager.dart';
+import '../../../shared/resources/theme/theme_cubit.dart';
 import '../../../shared/static/constants.dart';
 import '../../../shared/static/reusable_components.dart';
 import '../widgets/list_tile_widget.dart';
@@ -62,7 +63,16 @@ class _SettingScreenState extends State<SettingScreen> {
                 );
               }
             },
-          )
+          ),
+          ListTileWidget(
+            image: AssetsManager.modeIcon,
+            title: StringsManager.mode.tr(),
+            onPressed: (){
+              {
+                ThemeCubit.get(context).toggleTheme();
+              }
+            },
+          ),
         ],
       ),
     );

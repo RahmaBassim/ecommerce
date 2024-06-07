@@ -12,7 +12,6 @@ import '../../../../shared/static/reusable_components.dart';
 import '../../../../shared/static/routes.dart';
 import '../../../../shared/static/service_locator.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -21,10 +20,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String? validatePassword(String? value){
-    if (value!.isEmpty){
+  String? validatePassword(String? value) {
+    if (value!.isEmpty) {
       return StringsManager.requiredData;
-    }else if (value.length < 6){
+    } else if (value.length < 6) {
       return StringsManager.passwordValidate.tr();
     } else {
       return null;
@@ -45,30 +44,38 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 140.h,),
-                HeaderText(title: StringsManager.headerTitle.tr(),),
-                SizedBox(height: 100.h,),
+                SizedBox(
+                  height: 140.h,
+                ),
+                HeaderText(
+                  title: StringsManager.headerTitle.tr(),
+                ),
+                SizedBox(
+                  height: 100.h,
+                ),
                 CustomTextFormField(
-                    validate: CustomValidation.validateName,
-                    keyboardType: TextInputType.text,
-                    textEditingController: mailController,
-                    hintText: StringsManager.enterMail.tr(),
+                  validate: CustomValidation.validateName,
+                  keyboardType: TextInputType.text,
+                  textEditingController: mailController,
+                  hintText: StringsManager.enterMail.tr(),
                   prefix: Icons.person,
                 ),
-                SizedBox(height: 50.h,),
+                SizedBox(
+                  height: 50.h,
+                ),
                 PasswordField(
                   hintText: StringsManager.enterPassword.tr(),
                   controller: passwordController,
                   label: StringsManager.enterValidPassword.tr(),
-                  onChanged: (value){},
-                  validator: (value){
-                    if(value!.isEmpty){
+                  onChanged: (value) {},
+                  validator: (value) {
+                    if (value!.isEmpty) {
                       return StringsManager.requiredData.tr();
-                    } else if (value != passwordController.text){
+                    } else if (value != passwordController.text) {
                       return StringsManager.unmatchedPass.tr();
-                    }else if(value.length < 6){
+                    } else if (value.length < 6) {
                       return StringsManager.passwordValidate.tr();
-                    }else {
+                    } else {
                       return null;
                     }
                   },
@@ -76,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pushNamed(context, Routes.forgetPassword);
                       },
                       child: Text(
@@ -84,40 +91,42 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: Theme.of(context).textTheme.labelSmall,
                       )),
                 ),
-                SizedBox(height: 100.h,),
+                SizedBox(
+                  height: 100.h,
+                ),
                 BlocConsumer<LoginCubit, LoginState>(
-                  listenWhen: (previous, current) => current is LoginSuccessState || current is LoginErrorState,
+                  listenWhen: (previous, current) =>
+                      current is LoginSuccessState ||
+                      current is LoginErrorState,
                   listener: (context, state) {
-                    if(state is LoginSuccessState){
-                      sl<NavigationService>().navigateTo(Routes.mainHome);
-                    }else if(state is LoginErrorState){
+                    if (state is LoginSuccessState) {
+                      sl<NavigationService>().navigateTo(Routes.customHome);
+                    } else if (state is LoginErrorState) {
                       showToast(state.error);
                     }
-
                   },
-  builder: (context, state) {
-                    if(state is LoginLoading){
-                      return const Center(child:  CircularProgressIndicator());
-                    }else{
+                  builder: (context, state) {
+                    if (state is LoginLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else {
                       return CustomButton(
-                        onTap: (){
-                          if(formKey.currentState!.validate()){
-                            LoginCubit.get(context).login(request: LoginRequestModel(
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            LoginCubit.get(context).login(
+                                request: LoginRequestModel(
                               password: passwordController.text,
                               email: mailController.text,
                             ));
                           }
-
-
                         },
                         title: StringsManager.login.tr(),
                       );
                     }
-
-
-  },
-),
-                SizedBox(height: 30.h,),
+                  },
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -126,12 +135,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     TextButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pushNamed(context, Routes.signUp);
                       },
                       child: Text(
                         StringsManager.signUp.tr(),
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(color: ColorsManager.pink),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(color: ColorsManager.pink),
                       ),
                     ),
                   ],

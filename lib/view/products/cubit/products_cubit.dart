@@ -27,7 +27,7 @@ class ProductsCubit extends Cubit<ProductsState> {
         (failure)=> emit(ProductsErrorState(message: failure.message)),
         (success) {
           categoryProducts = success.products;
-          emit(ProductsSuccessState(/*categoryResponseModel: categoryProducts,allProducts: allProducts*/));
+          emit(ProductsSuccessState());
         }
     );
   }
@@ -36,24 +36,19 @@ class ProductsCubit extends Cubit<ProductsState> {
     if(allProducts.isNotEmpty){
       category = null;
       categoryProducts = [];
-      emit(ProductsSuccessState(/*categoryResponseModel: categoryProducts,allProducts: allProducts*/));
+      emit(ProductsSuccessState());
         return ;
     }
 
     emit(ProductsLoadingState());
-    /*
-    String token = sl<LocalDatasource>().getToken();
-    if(token.isEmpty){
-      emit(ProductsEmptyState());
-      return;
-    }*/
+
     final categoryProductOrFailure = await repository.allProducts();
     categoryProductOrFailure.fold(
             (failure)=> emit(ProductsErrorState(message: failure.message)),
             (success) {
           allProducts = success.products;
-          print('------------------------allProducts length: ${allProducts.length} ------------------');
-          emit(ProductsSuccessState(/*categoryResponseModel: categoryProducts,allProducts: allProducts)*/));
+          //print('------------------------allProducts length: ${allProducts.length} ------------------');
+          emit(ProductsSuccessState());
         }
     );
   }

@@ -46,5 +46,6 @@
   "noInternetConnection": "No Internet Connection",
   "changeLanguage": "Change Language",
   "ar": "Arabic",
-  "en": "English"
+  "en": "English",
+  "mode": "Change Mode"
 }

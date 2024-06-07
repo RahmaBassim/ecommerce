@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:e_commerce/data/firebase/firebase_datasource.dart';
 import 'package:e_commerce/models/request/login_request/login_request.dart';
-import 'package:e_commerce/models/response/login_response/loginResponse.dart';
+import 'package:e_commerce/models/response/login_response/login_response.dart';
 import 'package:e_commerce/models/response/signup_response/signup_response.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +31,7 @@ class FirebaseDatasourceImpl extends FirebaseDatasource {
           .where("password", isEqualTo: request.password)
           .limit(1)
           .get();
-      debugPrint('---------------------- ${userQuery}');
+      debugPrint('---------------------- $userQuery');
       UserModel userModel = userQuery.docs.isNotEmpty == true
           ? userQuery.docs.first.data()
           : UserModel(email: '');

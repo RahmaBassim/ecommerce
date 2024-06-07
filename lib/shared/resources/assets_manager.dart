@@ -24,6 +24,7 @@ class AssetsManager{
   static const String sortIcon = "assets/icons/sort.svg";
   static const String filterIcon = "assets/icons/filter.svg";
   static const String languageIcon = "assets/icons/language.svg";
+  static const String modeIcon = "assets/icons/mode.svg";
   static const String logoutIcon = "assets/icons/logout.svg";
   static const String closeIcon = "assets/icons/close-icon.svg";
 }

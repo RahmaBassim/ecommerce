@@ -131,12 +131,6 @@ class CustomValidation {
 
   static String? validateName(String? value) {
     return value == null || value.isEmpty ? StringsManager.requiredData.tr() : null;
-
-    // if (value!.isEmpty) {
-    //   return StringManger.required.tr();
-    // } else {
-    //   return null;
-    // }
   }
 
   static String? validateEmail(String? value) {
@@ -151,12 +145,6 @@ class CustomValidation {
         return null;
       }
     }
-
-    // if (value!.isEmpty) {
-    //   return StringManger.required.tr();
-    // } else {
-    //   return null;
-    // }
   }
 }
 

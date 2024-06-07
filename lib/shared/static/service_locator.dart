@@ -20,7 +20,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/remote/remote_datasource.dart';
 import '../../data/remote/remote_datasource_implementation.dart';
 import '../../repostory/repostory.dart';
-import '../../view/nav_bar/cubit/nav_bar_cubit.dart';
 import 'dio_helper.dart';
 import 'internet_checker.dart';
 import 'navigation_service.dart';

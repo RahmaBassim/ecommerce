@@ -29,6 +29,7 @@ class StringsManager{
   static const String customHomeTitle2 ='customHomeTitle2';
   static const String getStart ='getStart';
   static const String home ='home';
+  static const String mode ='mode';
   static const String favorite ='favorite';
   static const String cart ='cart';
   static const String search ='search';

@@ -1,4 +1,3 @@
-import 'package:e_commerce/shared/resources/routes_manager.dart';
 import 'package:e_commerce/shared/static/navigation_service.dart';
 import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:flutter/material.dart';

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../shared/resources/assets_manager.dart';
 import '../../../shared/resources/string_maneger.dart';
 import '../../../shared/static/reusable_components.dart';
-import 'categories_widget.dart';
 
 
 class FeaturesWidget extends StatelessWidget {
@@ -22,7 +21,7 @@ class FeaturesWidget extends StatelessWidget {
               HeaderText(
                   title: StringsManager.features.tr()
               ),
-              Row(
+             /* Row(
                 children: [
                   SortContainer(
                     text: StringsManager.sort.tr(),
@@ -33,7 +32,7 @@ class FeaturesWidget extends StatelessWidget {
                     icon: AssetsManager.filterIcon,
                   ),
                 ],
-              )
+              )*/
             ],
           ),
         ),

@@ -41,6 +41,5 @@ class DioHelper {
   Future<void> _logout() async {
     await sl<LocalDatasource>().removeToken();
     removeHeader();
-   // sl<NavigationService>().navigatePushNamedAndRemoveUntil(Routes.loginScreen);
   }
 }

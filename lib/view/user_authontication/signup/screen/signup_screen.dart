@@ -1,5 +1,4 @@
 import 'package:e_commerce/models/response/signup_response/signup_response.dart';
-import 'package:e_commerce/view/user_authontication/login/screen/login_screen.dart';
 import 'package:e_commerce/view/user_authontication/signup/cubit/signup_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

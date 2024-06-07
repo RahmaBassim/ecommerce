@@ -1,4 +1,3 @@
-import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,7 +6,6 @@ import '../../../shared/static/reusable_components.dart';
 import '../../home/widgets/features.dart';
 import '../../home/widgets/header.dart';
 import '../cubit/products_cubit.dart';
-import '../widgets/grid_view_products.dart';
 import '../widgets/product_cart.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -18,14 +16,7 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
-  @override
-  void initState() {
-   /* final state = CategoriesCubit.get(context).state;
-    if(state is CategoriesSuccessState){
-      ProductsCubit.get(context).getCategoryProduct(state.selectedCategory??'');
-    }*/
-    super.initState();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +51,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             "",
                         productName: categoryProduct[index].title ??
                             "",
-                        //productDescription: state.categoryResponseModel![index].description??"",
                         price: categoryProduct[index].price
                             .toString(),
                       ),
@@ -93,7 +83,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                             "",
                         productName: allProducts[index].title ??
                             "",
-                        //productDescription: state.categoryResponseModel![index].description??"",
                         price: allProducts[index].price
                             .toString(),
                       ),

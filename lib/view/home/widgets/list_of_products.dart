@@ -1,11 +1,8 @@
 import 'package:e_commerce/models/response/get_category_products/get_catedory_products_model.dart';
-import 'package:e_commerce/view/home/cubit/categories_cubit.dart';
 import 'package:e_commerce/view/products/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../shared/resources/assets_manager.dart';
 import '../../../shared/static/reusable_components.dart';
 import '../../products/widgets/product_cart.dart';
 
@@ -28,7 +25,6 @@ ProductsCubit.get(context).getAllProducts();
     return BlocBuilder<ProductsCubit, ProductsState>(
 
         builder: (context, state){
-          print('state $state');
 
          if(ProductsCubit.get(context).allProducts.isNotEmpty){
             List<ProductModel> allProducts = ProductsCubit.get(context).allProducts;
@@ -38,15 +34,14 @@ ProductsCubit.get(context).getAllProducts();
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: List.generate(
-                    allProducts.length >=5 ? 5:allProducts.length,
+                    allProducts.length >=15 ? 15:allProducts.length,
                  (index){
                   return  Padding(
                     padding: const EdgeInsets.all(5.0),
                     child:  ProductCart(
                       image: allProducts[index].images?.first??"",
                       productName: allProducts[index].title??"",
-                      //productDescription: state.categoryResponseModel.products![index].description??"",
-                      price: allProducts[index].price.toString()??"",
+                      price: allProducts[index].price.toString(),
                     ),
                   );
                  }),

@@ -32,9 +32,6 @@ class _ListTileWidgetState extends State<ListTileWidget> {
             leading: SvgPicture.asset(widget.image ?? '', color: ColorsManager.pink,),
             title: Text(widget.title ?? '',
                 style: Theme.of(context).textTheme.displayMedium),
-           /* trailing: SvgPicture.asset(AssetsManager.arrowBackW,
-                matchTextDirection: false,
-                alignment: AlignmentDirectional.centerEnd),*/
           ),
         ),
       ),
