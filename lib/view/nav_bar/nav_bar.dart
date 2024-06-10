@@ -26,51 +26,55 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BlocBuilder<NavBarCubit, NavBarState>(
-        builder: (context, state){
-          if(state is NavBarCurrentState){
-            return BottomNavigationBar(
-              currentIndex: state.index,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: ColorsManager.pink,
-                unselectedItemColor: ColorsManager.grey,
-                items: [
-                  _bottomNavigationBarItem(
-                      icon: AssetsManager.homeIcon,
-                      label: StringsManager.home.tr(),
-                      currentIndex: state.index,
-                      iconIndex: 0
-                  ),
-                  _bottomNavigationBarItem(
-                      icon: AssetsManager.favoriteIcon,
-                      label: StringsManager.favorite.tr(),
-                      currentIndex: state.index,
-                      iconIndex: 1
-                  ),
-                  _bottomNavigationBarItem(
-                      icon: AssetsManager.cartIcon,
-                      label: StringsManager.cart.tr(),
-                      currentIndex: state.index,
-                      iconIndex: 2
-                  ),
-                  _bottomNavigationBarItem(
-                      icon: AssetsManager.searchIcon,
-                      label: StringsManager.search.tr(),
-                      currentIndex: state.index,
-                      iconIndex: 3
-                  ), _bottomNavigationBarItem(
-                      icon: AssetsManager.settingIcon,
-                      label: StringsManager.setting.tr(),
-                      currentIndex: state.index,
-                      iconIndex: 4
-                  ),
-                ],
-              onTap: (index) => changeTabs(index: index,context: context),
-            );
-          }else {
-            return const SizedBox();
-          }
-        },
+      bottomNavigationBar: Localizations.override(
+        context: context,
+        locale: context.locale,
+        child: BlocBuilder<NavBarCubit, NavBarState>(
+          builder: (context, state){
+            if(state is NavBarCurrentState){
+              return BottomNavigationBar(
+                currentIndex: state.index,
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: ColorsManager.pink,
+                  unselectedItemColor: ColorsManager.grey,
+                  items: [
+                    _bottomNavigationBarItem(
+                        icon: AssetsManager.homeIcon,
+                        label: StringsManager.home.tr(),
+                        currentIndex: state.index,
+                        iconIndex: 0
+                    ),
+                    _bottomNavigationBarItem(
+                        icon: AssetsManager.favoriteIcon,
+                        label: StringsManager.favorite.tr(),
+                        currentIndex: state.index,
+                        iconIndex: 1
+                    ),
+                    _bottomNavigationBarItem(
+                        icon: AssetsManager.cartIcon,
+                        label: StringsManager.cart.tr(),
+                        currentIndex: state.index,
+                        iconIndex: 2
+                    ),
+                    _bottomNavigationBarItem(
+                        icon: AssetsManager.searchIcon,
+                        label: StringsManager.search.tr(),
+                        currentIndex: state.index,
+                        iconIndex: 3
+                    ), _bottomNavigationBarItem(
+                        icon: AssetsManager.settingIcon,
+                        label: StringsManager.setting.tr(),
+                        currentIndex: state.index,
+                        iconIndex: 4
+                    ),
+                  ],
+                onTap: (index) => changeTabs(index: index,context: context),
+              );
+            }else {
+              return const SizedBox();
+            }
+          },
+        ),
       ),
       body: BlocBuilder<NavBarCubit, NavBarState>(
         builder: (context, state){

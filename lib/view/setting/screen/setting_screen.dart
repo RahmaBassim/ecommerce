@@ -7,6 +7,7 @@ import '../../../shared/resources/assets_manager.dart';
 import '../../../shared/resources/theme/theme_cubit.dart';
 import '../../../shared/static/constants.dart';
 import '../../../shared/static/reusable_components.dart';
+import '../widgets/change_language.dart';
 import '../widgets/list_tile_widget.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -47,8 +48,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                   function: () {
                                     context.setLocale(
                                         const Locale(Constants.arCode));
+                                    setState(() {
+
+                                    });
                                   }),
-                               SizedBox(
+                              SizedBox(
                                 height: 24.h,
                               ),
                               CustomButtonLanguage(
@@ -56,6 +60,9 @@ class _SettingScreenState extends State<SettingScreen> {
                                   function: () {
                                     context.setLocale(
                                         const Locale(Constants.enCode));
+                                    setState(() {
+
+                                    });
                                   }),
                             ],
                           )
