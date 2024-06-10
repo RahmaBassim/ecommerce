@@ -24,7 +24,7 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ListTileWidget(
+           ListTileWidget(
             image: AssetsManager.languageIcon,
             title: StringsManager.changeLanguage.tr(),
             onPressed: (){
@@ -48,9 +48,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                   function: () {
                                     context.setLocale(
                                         const Locale(Constants.arCode));
-                                    setState(() {
 
-                                    });
                                   }),
                               SizedBox(
                                 height: 24.h,
@@ -60,9 +58,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                   function: () {
                                     context.setLocale(
                                         const Locale(Constants.enCode));
-                                    setState(() {
 
-                                    });
                                   }),
                             ],
                           )

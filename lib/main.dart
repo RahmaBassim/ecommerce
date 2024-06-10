@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
                 theme:state.userTheme,
                 debugShowCheckedModeBanner: false,
                 navigatorKey: sl<NavigationService>().navigatorKey,
-                initialRoute: Routes.onBoarding,
+                initialRoute: Routes.navBar,
                 onGenerateRoute: RoutesManager.onGenerateRoute,
               );
             },
