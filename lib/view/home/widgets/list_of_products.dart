@@ -39,9 +39,7 @@ ProductsCubit.get(context).getAllProducts();
                   return  Padding(
                     padding: const EdgeInsets.all(5.0),
                     child:  ProductCart(
-                      image: allProducts[index].images?.first??"",
-                      productName: allProducts[index].title??"",
-                      price: allProducts[index].price.toString(),
+                      product: allProducts[index] ,
                     ),
                   );
                  }),

@@ -1,17 +1,16 @@
 import 'package:e_commerce/shared/resources/colors_manager.dart';
 import 'package:e_commerce/shared/resources/theme/theme_cubit.dart';
+import 'package:e_commerce/view/products/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../models/response/get_category_products/get_catedory_products_model.dart';
+
 
 class ProductCart extends StatelessWidget {
-  final String image;
-  final String productName;
-  final String price;
+  final ProductModel product;
   const ProductCart({
-    required this.productName,
-    required this.image,
-    required this.price,
+    required this.product,
     super.key});
 
   @override
@@ -33,7 +32,7 @@ class ProductCart extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                image: NetworkImage(image),
+                image: NetworkImage(product.images?.first??''),
                 fit: BoxFit.contain
               ),
             ),
@@ -42,17 +41,19 @@ class ProductCart extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(
-              productName,
+              product.title??'',
               style: Theme.of(context).textTheme.displaySmall
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(
-              price,
+              product.price.toString(),
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
+          SizedBox(height: 15.h,),
+          RateWidget(rate: product.rate!.toDouble(),)
         ],
       ),
     );
